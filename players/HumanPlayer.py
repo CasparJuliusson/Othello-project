@@ -6,7 +6,7 @@ class HumanPlayer:
         self.graphics = graphics
 
     def move(self, env):
-        validMoves = get_valid_moves(env.board, self.player) # move this to a func in player and call it from all players
+        validMoves = get_valid_moves(env.board, self.player)
         if validMoves == []: 
             return
         

@@ -1,6 +1,7 @@
 import numpy as np
 from Utils import *
 
+
 # not global?
 n = 8
 white_value = 1
