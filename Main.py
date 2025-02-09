@@ -30,7 +30,7 @@ def getPlayerType(arg, player_value , graphics, max_depth):
 
 def get_depth(time_limit):
     marginal_factor = 1.5
-    depth = (4.24086193 + 0.5964272 * np.log(time_limit) ) * 1/marginal_factor
+    depth = 4.24086193 + 0.5964272 * np.log(time_limit*1/marginal_factor)
     return np.floor(depth)
 
 def analyze_times(times):
@@ -78,7 +78,6 @@ def main():
             black_player = HumanPlayer(black_value, graphics)
             white_player = EvalMiniMax(white_value, max_depth)
 
-
     n_wins = {
         white_value: 0,
         0: 0,
@@ -87,8 +86,6 @@ def main():
 
     n_played = 0
 
-    black_player_time_list = []
-    white_player_time_list = []
     
     start_time = time.time()
     while n_played < n_games:
@@ -96,17 +93,13 @@ def main():
         graphics.draw(env.board)
         while True:
             
-            t_start = time.time()
             black_player.move(env)
-            black_player_time_list.append(time.time()-t_start)
 
             graphics.draw(env.board)
             if is_game_over(env.board): break
 
             
-            t_start = time.time()
             white_player.move(env)
-            white_player_time_list.append(time.time()-t_start)
 
             graphics.draw(env.board)
             if is_game_over(env.board): break
@@ -129,10 +122,6 @@ def main():
     print()
     print(f"Total elapsed time: {elapsed_time:.6f} seconds")
     print(f"Average elapsed time: {elapsed_time/n_played:.6f} seconds")
-
-
-    #analyze_times(black_player_time_list)
-    #analyze_times(white_player_time_list)
         
 
 
