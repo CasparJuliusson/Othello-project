@@ -27,7 +27,6 @@ class EvalMiniMax:
         
         for move in validMoves:
             score = self.negamax_alphabeta(update_board(board, player, move), 1, player, env, -np.inf, np.inf)
-            #score = self.negamax(update_board(board, player, move), 1, player, env)
             if score > best_score or score == best_score == -np.inf:
                 best_score = score
                 best_move = move

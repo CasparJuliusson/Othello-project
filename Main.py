@@ -49,7 +49,7 @@ def print_last_game_result(sum, n_played):
     if sum == 0:
         print(f"- Game {n_played}: result: Draw")
         return
-    winnner_string = "Black_player" if sum > 0 else "White_player"
+    winnner_string = "White_player" if sum > 0 else "Black_player"
     print(f"- Game {n_played}: result: {winnner_string} won by {np.abs(sum)} discs")    
         
 
@@ -61,10 +61,14 @@ def main():
     if len(argv) >= 1:
         try:
             n_games = int(argv[1])
-            time_limit = float(argv[2])
-            max_depth = get_depth(time_limit)
+            if argv[2][0] == 'd':
+                max_depth = float(argv[2][1:])
+            else: 
+                time_limit = float(argv[2])
+                max_depth = get_depth(time_limit)
             black_player = getPlayerType(argv[3], black_value, graphics, max_depth)
             white_player = getPlayerType(argv[4], white_value, graphics, max_depth)
+            
             
         except: 
             print("Invalid input, standards initialisation used instead")
